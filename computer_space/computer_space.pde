@@ -1,9 +1,12 @@
 star_family [] star = new star_family [200];
+
 ship space_ship;
 
 void setup (){
   fullScreen();
   //size(800, 600);
+
+  colorMode(HSB);
 
   for(int i = 0; i < star.length; i++)
     star[i] = new star_family ();
@@ -12,23 +15,28 @@ void setup (){
 }
 
 void draw (){
+  translate(width/2, height/2);
+
+  /******visual**********/
   background(19, 18, 19);
 
   for(int i = 0; i < star.length; i++)
     star[i].draw();
+  /******visual_END******/
 
   space_ship.mov();
   space_ship.draw();
 }
 
+/******visual**********/
 class star_family {
   int d_min = 3, d_max = 4;
   float d = random(d_min, d_max);
-  float d_plus = 0.1;
+  float d_plus = 0.005;
   boolean up = true;
 
-  float x = random(0, width);
-  float y = random(0, height);
+  float x = random(-width/2, width/2);
+  float y = random(-height/2, height/2);
 
   PVector pos = new PVector(x, y);
 
@@ -52,67 +60,72 @@ class star_family {
     ellipse(pos.x, pos.y, d, d);
   }
 }
+/******visual_END******/
 
 class ship {
-  PVector pos = new PVector(width/2, height/2);
+  PVector pos = new PVector(0, 0);
   PVector vel = new PVector(0, 0);
   PVector ace = new PVector(0, 0);
+
   PVector mouse = new PVector(0, 0);
+  PVector frent = new PVector (0, -1); //apontando para cima
+  float angle = 0; //angle entre frente e posição
 
   void mov (){
-    /* //usando o mouser
-    if (dist(mouseX, mouseY, pos.x, pos.y) > 10){
-      mouse.x = mouseX;
-      mouse.y = mouseY;
+    mouse.x = mouseX - width/2 - pos.x;
+    mouse.y = mouseY - height/2 - pos.y;
 
-      ace.add(mouse.sub(pos));
-      ace.normalize();
+    if(mousePressed)
+      ace.add(mouse);
 
-      vel.add(ace);
-      vel.limit(10);
-
-      pos.add(vel);
-    }
-
-    else {
-      ace.x = 0; vel.x = 0;
-      ace.y = 0; vel.y = 0;
-    }*/
-
-    if ((key == 'w') || (key == 'W')){
-      ace.x = 0; ace.y = -1;
-    }
-    else if ((key == 's') || (key == 'S')){
-      ace.x = 0; ace.y = 1;
-    }
-    else if ((key == 'a') || (key == 'A')){
-      ace.x = -1; ace.y = 0;
-    }
-    else if ((key == 'd') || (key == 'D')){
-      ace.x = 1; ace.y = 0;
-    }
-    else {
-      ace.x = 0; ace.y = 0;
-      vel.x = 0; vel.y = 0;
-    }
-
-    if (pos.x > width)
-      pos.x = 0;
-    if (pos.x < 0)
-      pos.x = width;
-    if (pos.y > height)
-      pos.y = 0;
-    if (pos.y < 0)
-      pos.y = height;
-
+      ace.limit(6);
     vel.add(ace);
-    vel.limit(6);
-
+      vel.limit(4);
     pos.add(vel);
+
+    /***verificar se ainda esta na tela***/
+    if (pos.x > width/2)
+      pos.x = -width/2;
+    if (pos.x < -width/2)
+      pos.x = width/2;
+    if (pos.y > height/2)
+      pos.y = -height/2;
+    if (pos.y < -height/2)
+      pos.y = height/2;
+    /*******/
+  }
+
+  void norma (){
+    angle = PVector.angleBetween (mouse, frent);
+
+    if(mouse.x < 0)
+      rotate(-angle);
+    else
+      rotate(angle);
+  }
+
+  void point_ship (){
+    fill(#8795c7);
+
+    float scal = 1.4;
+    beginShape();
+      vertex(0, 10 * scal);
+      vertex(10 * scal, 20 * scal);
+
+      vertex(0, -20 * scal);
+
+      vertex(-10 * scal, 20 * scal);
+      vertex(0, 10 * scal);
+    endShape();
   }
 
   void draw (){
-    fill(20, 80, 120);
-    ellipse(pos.x, pos.y, 20, 20);
+    pushMatrix();
+      translate(pos.x, pos.y);
+
+      norma ();
+
+      point_ship ();
+    popMatrix();
   }
 }
