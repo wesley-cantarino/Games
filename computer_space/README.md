@@ -16,11 +16,11 @@ Estou usando orientação a objeto em quase toda parte da programação e separe
 #### obs: dentro da pasta application.windows64 temos o arquivo executável (.exe) para windows 64 bits.
 
 ###### Minha versão:
-![minha versão](https://raw.github.com/wesley-cantarino/Games/tree/master/computer_space/img_and_video/today_at_27_12_2018.png)
+![minha versão](https://github.com/wesley-cantarino/Games/blob/master/computer_space/img_and_video/today_27_12_2018.png)
 
 ###### Versão original Computer Space:
 
-![versão original](https://raw.github.com/wesley-cantarino/Games/tree/master/computer_space/img_and_video/original.png)
+![versão original](https://github.com/wesley-cantarino/Games/blob/master/computer_space/img_and_video/original.png)
 
 
 
