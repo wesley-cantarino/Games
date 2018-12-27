@@ -161,7 +161,7 @@ public void Funtion_cloud(){
 public void chao (){
   stroke(10);
   strokeWeight(3);
-  line(0, 180, width, 180); //ch\u00e3o
+  line(0, 180, width, 180); //chão
 
   for(int i = 0; i < linhas.length; i++){
     rect(linhas[i].X, linhas[i].Y, 3, 1);

@@ -1,3 +1,5 @@
+//key 32 é a tecla de espaço
+
 class ship {
   PVector pos = new PVector(0, 0);
   PVector vel = new PVector(0, 0);
@@ -11,7 +13,7 @@ class ship {
     mouse.x = mouseX - width/2 - pos.x;
     mouse.y = mouseY - height/2 - pos.y;
 
-    if((mousePressed) && (comb > 0)){
+    if((keyPressed) && (key == 32) && (comb > 0)){
       ace.add(mouse);
         ace.limit(0.1);
       vel.add(ace);
@@ -46,7 +48,8 @@ class ship {
     float scal1 = 4;
     float scal2 = 1.4;
 
-    if((mousePressed) && (comb > 0)){
+    if((keyPressed) && (key == 32) && (comb > 0)){
+      comb += dcombdt;
       fill(#f05641);
       ellipse(0, 20 * scal2 + 10, 20 * scal2 - 5, 20 * scal2 - 5);
 
@@ -71,7 +74,6 @@ class ship {
   void draw (){
     pushMatrix();
       translate(pos.x, pos.y);
-
       norma ();
 
       point_ship ();

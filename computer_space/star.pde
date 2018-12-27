@@ -1,5 +1,5 @@
 class star_family {
-  int d_min = 3, d_max = 4;
+  float d_min = random(1, 3), d_max = random(3, 5);
   float d = random(d_min, d_max);
   float d_plus = 0.005;
   boolean up = true;

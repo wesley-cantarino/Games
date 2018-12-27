@@ -6,8 +6,6 @@ void informacoes (){
 
   fill(#d4e23c);
   rect(50, height - 50, comb, 10);
-  if((mousePressed) && (comb > 0))
-    comb += dcombdt;
 
   fill(#1b1d1c);
   textAlign(CENTER);
@@ -18,6 +16,12 @@ void informacoes (){
   else {
     text("no fuel", 150, height - 50);
   }
+
+
+  textAlign(CENTER, CENTER);
+  text("Munição: " + muni, 400, height - 50);
+
+
 
   noFill();
   stroke(#000000);
