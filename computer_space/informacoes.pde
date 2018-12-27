@@ -21,6 +21,10 @@ void informacoes (){
   textAlign(CENTER, CENTER);
   text("Munição: " + muni, 400, height - 50);
 
+  text("Life: " + life, 550, height - 50);
+
+  text("Asteroids: " + ast, 800, height - 50);
+
 
 
   noFill();

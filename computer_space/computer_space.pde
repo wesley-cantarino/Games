@@ -9,8 +9,13 @@ int number = 0;
 int muni = 120;
 
 ship space_ship;
+float life = 10;
+float dano = -1;
 float comb = 200; //quantidade de combustivel
 float dcombdt = -0.2; //taxa de queima d(comb)/dt
+
+int ast = 10;
+asteroid_family [] asteroid = new asteroid_family [ast];
 
 void setup (){
   fullScreen();
@@ -37,6 +42,9 @@ void setup (){
     triger[i] = new fire_gun ();
 
   space_ship = new ship ();
+
+  for(int i = 0; i < asteroid.length; i++)
+    asteroid[i] = new asteroid_family ();
 }
 
 void draw (){
@@ -60,6 +68,23 @@ void draw (){
     space_ship.mov();
     space_ship.draw();
 
+    for(int i = 0; i < asteroid.length; i++){
+      for(int j = 0; j < triger.length; j++){
+        if((dist(asteroid[i].pos.x, asteroid[i].pos.y, triger[j].pos.x, triger[j].pos.y) < 20) && (!asteroid[i].explosion)){
+          asteroid[i].explosion = true;
+          ast -= 1;
+        }
+
+        if(!asteroid[i].explosion){
+          asteroid[i].mov();
+          asteroid[i].draw();
+        }
+      }
+
+      if((dist(asteroid[i].pos.x, asteroid[i].pos.y, space_ship.pos.x, space_ship.pos.y) < 30) && (!asteroid[i].explosion)){
+        life += dano;
+      }
+    }
   popMatrix();
 
   informacoes();
