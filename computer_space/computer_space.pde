@@ -14,8 +14,12 @@ float dano = -1;
 float comb = 200; //quantidade de combustivel
 float dcombdt = -0.2; //taxa de queima d(comb)/dt
 
-int ast = 10;
+int ast = 4;
 asteroid_family [] asteroid = new asteroid_family [ast];
+
+PImage asteroid_img;
+PImage spacecraft_img;
+PImage spacecraft_fire_img;
 
 void setup (){
   fullScreen();
@@ -45,6 +49,11 @@ void setup (){
 
   for(int i = 0; i < asteroid.length; i++)
     asteroid[i] = new asteroid_family ();
+
+
+  asteroid_img = loadImage("asteroid.png");
+  spacecraft_img = loadImage("spacecraft_img.png");
+  spacecraft_fire_img = loadImage("spacecraft_img_fire.png");
 }
 
 void draw (){

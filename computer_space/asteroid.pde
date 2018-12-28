@@ -21,7 +21,7 @@ class asteroid_family {
   }
 
   void draw (){
-    fill(#8bb066);
-    ellipse(pos.x, pos.y, 40, 40);
+    imageMode(CENTER);
+    image(asteroid_img, pos.x, pos.y, 30, 30);
   }
 }

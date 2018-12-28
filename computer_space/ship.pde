@@ -45,19 +45,30 @@ class ship {
   }
 
   void point_ship (){
+    imageMode(CENTER);
+
     float scal1 = 4;
     float scal2 = 1.4;
 
     if((keyPressed) && (key == 32) && (comb > 0)){
       comb += dcombdt;
+
+      image(spacecraft_fire_img, 0, 0, 100, 100);
+
+      /*****
       fill(#f05641);
       ellipse(0, 20 * scal2 + 10, 20 * scal2 - 5, 20 * scal2 - 5);
 
       fill(#f0c941);
       arc(0, 20 * scal2, 20 * scal2, 20 * scal2, 0, PI);
       triangle(0, 10 * scal2, 10 * scal2, 20 * scal2 + 1, -10 * scal2, 20 * scal2 + 1);
+      *****/
     }
 
+
+    image(spacecraft_img, 0, 0, 100, 100);
+
+    /********
     fill(#8795c7);
 
     beginShape();
@@ -69,6 +80,7 @@ class ship {
       vertex(-10 * scal2, 20 * scal2);
       vertex(0, 10 * scal2);
     endShape();
+    ********/
   }
 
   void draw (){
