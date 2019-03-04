@@ -20,10 +20,9 @@ var select = {
 
   old_l : null,
   old_c : null,
-  value : null,
 
-  atua_l : null,
-  atua_c : null
+  value : null,
+  atu_value : null
 };
 
 function setup ()
@@ -50,23 +49,23 @@ function alterar ()
 {
   if(select.old_l != null)
   {
-    tab[select.old_l][select.old_c] = tab[select.l][select.c];
-    tab[select.l][select.c] = select.value;
+    select.atu_value = tab[select.l][select.c];
 
-    select.old_l = null;
-    select.old_c = null;
+    if(select.atu_value != select.value)
+    {
+      tab[select.old_l][select.old_c] = tab[select.l][select.c];
+      tab[select.l][select.c] = select.value;
 
-    console.log(select.old_l);
+      select.old_l = null;
+      select.old_c = null;
+
+      select.atu_value = select.value;
+      select.value = null;
+
+      console.log("hello");
+    }
   }
   else
-  {
-    select.old_l = select.l;
-    select.old_c = select.c;
-
-    select.value = tab[select.l][select.c];
-  }
-
-  if((select.old_l != null) && (tab[select.old_l][select.old_c] != tab[select.l][select.c]))
   {
     select.old_l = select.l;
     select.old_c = select.c;
